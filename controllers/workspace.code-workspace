@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../TesteNode"
+		},
+		{
+			"path": "../../../HttpNode"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
