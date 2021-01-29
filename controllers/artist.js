@@ -7,8 +7,6 @@ var mongoosePaginate = require('mongoose-pagination');
 var Artist = require('../models/artist');
 var Album = require('../models/album');
 var Song = require('../models/song');
-const artist = require('../models/artist');
-const e = require('express');
 
 function getArtist(req, res){
     var artistId = req.params.id;
@@ -100,7 +98,7 @@ function deleteAritst(req, res) {
             if(!artistRemoved) {
                 res.status(404).send({message: 'Artist não foi removido corretamente'});
             } else {
-                Album.find({artist: artistRemoved._id}).remove((err, albumRemoved) => {
+                Album.find({artist: artistRemoved._id}).deleteMany((err, albumRemoved) => {
                     if(err){
                         res.status(500).send({message: 'Erro ao eliminar album'});
                     } else {
@@ -108,7 +106,7 @@ function deleteAritst(req, res) {
                             res.status(404).send({message: 'Album não foi removido'});
                         } else {
 
-                            Song.find({artist: albumRemoved._id}).remove((err, songRemoved) => {
+                            Song.find({album: albumRemoved._id}).deleteMany((err, songRemoved) => {
                                 if(err){
                                     res.status(500).send({message: 'Erro ao eliminar song'});
                                 } else {

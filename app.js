@@ -7,6 +7,7 @@ var app = express();
 
 var user_routes = require('./routes/user');
 var artist_routes = require('./routes/artist');
+var album_routes = require('./routes/album');
 
 //Rotas
 app.use(bodyParser.urlencoded({extended:false}));
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 //Rotas do Backend (API)
 app.use('/api', user_routes);
 app.use('/api', artist_routes);
+app.use('/api', album_routes);
 
 //Rotas do Front
 app.get('/', function(req, res) {
