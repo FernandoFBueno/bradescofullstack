@@ -12,14 +12,17 @@
 <div *ngIf="!identity" class="col-lg-12">
     <div class="col-lg-6 floatLeft">
         <h1>Login</h1>
-        <form class="col-md-10">
+        <form ngNativeValidate #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-10">
             <p>
                 <label>Email:</label>
-                <input type="text" class="form-control" required>
+                <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" ngModel email="true" required>
+                <span *ngIf="!email.valid && email.touched">
+                    Campo obrigatório
+                </span>
             </p>
             <p>
                 <label>Password:</label>
-                <input type="password" class="form-control" required>
+                <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" ngModel required>
             </p>
             <input type="submit" value="Entrar" class="btn btn-primary">
         </form>
