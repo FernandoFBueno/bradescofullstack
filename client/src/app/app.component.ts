@@ -10,14 +10,17 @@ import { User } from './models/user';
 export class AppComponent implements OnInit {
   public title = 'APP Bradesco';
   public user: User;
+  public userRegister: User;
   public identity;
   public token;
   public errorMessage;
+  public alertMessage;
 
   constructor(
     private _userService:UserService
   ){
     this.user = new User('','','','','','ROLE_USER','');
+    this.userRegister = new User('','','','','','ROLE_USER','');
     this.token = '';
     this.errorMessage = '';
   }
@@ -50,11 +53,8 @@ export class AppComponent implements OnInit {
               if(this.token.length <= 0) {
                 this.errorMessage = 'Erro ao guardar token';
               } else {
-
                 localStorage.setItem('token', token);
-
-                console.log(token);
-                console.log(identity);
+                this.user = new User('','','','','','ROLE_USER','');
               }
             },
             error => {
@@ -82,6 +82,29 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.identity = null;
     this.token = null;
+  }
+
+  onSubmitRegister(){
+    this._userService.register(this.userRegister).subscribe(
+      (response: any) => {
+        let user = response.user;
+        this.userRegister = user;
+
+        if(!user._id){
+          this.alertMessage = 'Erro ao cadastrar usuario';
+        } else {
+          this.alertMessage = 'Usuario cadastrado com sucesso';
+          this.userRegister = new User('','','','','','ROLE_USER','');
+        }
+
+      },
+      error => {
+        var errorMessage = <any>error;
+        if(errorMessage != null){
+          this.alertMessage = errorMessage.error.message;
+        }
+      }
+    );
   }
 
 }

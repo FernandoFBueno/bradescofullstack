@@ -41,22 +41,36 @@
     </div>
     <div class="col-lg-6 floatLeft">
         <h1>Cadastrar</h1>
-        <form class="col-md-10">
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+                {{alertMessage}}
+            </div>
+        </div>
+        <form ngNativeValidate (ngSubmit)="onSubmitRegister()" #registerForm="ngForm" class="col-md-10">
             <p>
                 <label>Nome:</label>
-                <input type="text" class="form-control" required>
+                <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="userRegister.name" class="form-control" ngModel required>
+                <span *ngIf="!name.valid && name.touched">
+                    Campo obrigatório
+                </span>
             </p>
             <p>
                 <label>Sobrenome:</label>
-                <input type="text" class="form-control" required>
+                <input type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="userRegister.surname" class="form-control" ngModel required>
+                <span *ngIf="!surname.valid && surname.touched">
+                    Campo obrigatório
+                </span>
             </p>
             <p>
                 <label>Email:</label>
-                <input type="text" class="form-control" required>
+                <input type="email" name="email" #email="ngModel" [(ngModel)]="userRegister.email" class="form-control" ngModel email="true" required>
+                <span *ngIf="!email.valid && email.touched">
+                    Campo obrigatório
+                </span>
             </p>
             <p>
                 <label>Password:</label>
-                <input type="password" class="form-control" required>
+                <input type="password" name="password" #password="ngModel" [(ngModel)]="userRegister.password" class="form-control" ngModel required>
             </p>
             <input type="submit" value="Cadastrar" class="btn btn-primary">
         </form>
