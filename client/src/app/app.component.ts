@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './service/user.service';
+import { PersistData }  from './service/persistdata';
 import { User } from './models/user';
 
 @Component({
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
   public alertMessage;
 
   constructor(
-    private _userService:UserService
+    private _userService:UserService,
+    private _persistData:PersistData
   ){
     this.user = new User('','','','','','ROLE_USER','');
     this.userRegister = new User('','','','','','ROLE_USER','');
@@ -26,8 +28,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.identity = this._persistData.getIdentity();
+    this.token = this._persistData.getToken();
 
     console.log(this.identity);
   }
