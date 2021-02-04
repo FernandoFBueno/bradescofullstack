@@ -1,0 +1,38 @@
+<div *ngIf="identity" class="col-lg-6">
+    <h1>{{titulo}}</h1>
+    <div *ngIf="alertUpdate">
+        <div class="alert alert-info">
+            {{alertUpdate}}
+        </div>
+    </div>
+    <form ngNativeValidate (ngSubmit)="onSubmitUpdate()" #registerForm="ngForm" class="col-md-10">
+        <p>
+            <label>Nome:</label>
+            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" ngModel required>
+            <span *ngIf="!name.valid && name.touched">
+                Campo obrigatório
+            </span>
+        </p>
+        <p>
+            <label>Sobrenome:</label>
+            <input type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" ngModel required>
+            <span *ngIf="!surname.valid && surname.touched">
+                Campo obrigatório
+            </span>
+        </p>
+        <p>
+            <label>Email:</label>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" ngModel email="true" required>
+            <span *ngIf="!email.valid && email.touched">
+                Campo obrigatório
+            </span>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" ngModel required>
+        </p>
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+    </form>
+</div>
+
+

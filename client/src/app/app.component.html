@@ -1,13 +1,51 @@
-<div *ngIf="identity" class="navigation col-lg-11">
-    <h1>
-        {{title}}
-    </h1>
-    <span>
-        {{identity.name}} {{identity.surname}}
-    </span>
-    <span class="btn btn-warning" (click)="logout()">
-        Sair
-    </span>
+<div *ngIf="identity" class="navigation col-lg-12">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="selected">{{title}}</a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" [routerLink]="['/']" routerLinkActive="selected">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Artista</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Album</a>
+              </li>
+              
+              <li class="nav-item">
+                <span>
+                    {{identity.name}}
+                </span>
+              </li>
+
+              <li class="nav-item">
+                <a [routerLink]="['/meus-dados']" routerLinkActive="selected">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    Meus Dados
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <span class="btn btn-warning" (click)="logout()">
+                    Sair
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
 </div>
 <div class="clearfix"></div>
 
@@ -76,3 +114,5 @@
         </form>
     </div>
 </div>
+
+<router-outlet></router-outlet>
