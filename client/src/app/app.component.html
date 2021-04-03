@@ -23,22 +23,31 @@
                 <a class="nav-link" href="#">Album</a>
               </li>
               
-              <li class="nav-item">
-                <span id="identityName">
-                    {{identity.name}}
-                </span>
-              </li>
 
               <li class="nav-item">
-                <a [routerLink]="['/meus-dados']" routerLinkActive="selected">
+                <a [routerLink]="['/meus-dados']" routerLinkActive="selected" class="nav-link">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     Meus Dados
                 </a>
               </li>
 
               <li class="nav-item">
-                <span class="btn btn-warning" (click)="logout()">
+                <a class="nav-link linkLogout" (click)="logout()">
                     Sair
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                    {{identity.name}}
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <span id="identityName">
+                    <div class="imageUser">
+                        <div id="divImageUser" [ngStyle]="{'background-image': 'url(' + divImageUser + ')'}" ></div>
+                    </div>
                 </span>
               </li>
             </ul>

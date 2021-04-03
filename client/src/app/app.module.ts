@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { UserService } from './service/user.service';
 import { PersistData }  from './service/persistdata';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { TokenInterceptorService } from './service/tokeninterceptor.service';
-
-
 
 @NgModule({
   declarations: [
@@ -26,7 +21,6 @@ import { TokenInterceptorService } from './service/tokeninterceptor.service';
     FormsModule,
     HttpClientModule,
     RouterModule
-
   ],
   providers: [
     UserService,

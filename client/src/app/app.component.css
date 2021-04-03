@@ -3,3 +3,25 @@
 .floatLeft{
     float: left;
 }
+
+.linkLogout{
+    font-weight: bold;
+}
+
+#identityName {
+    float: left;
+}
+#identityName .imageUser {
+    width: 40px;
+    border-radius: 30px;
+    height: 40px;
+    float: left;
+}
+
+#identityName .imageUser div{
+    background-size: cover;
+    width: 40px;
+    border-radius: 30px;
+    height: 40px;
+    background-position: center;
+}

@@ -27,10 +27,16 @@
                 Campo obrigatório
             </span>
         </p>
+        
+        <div class="imageEditUser" *ngIf="user.image && user.image != 'null'">
+            <img src="{{url + 'get-user-image/' + user.image}}" >
+        </div>
+        
         <p>
-            <label>Password:</label>
-            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" ngModel required>
+            <label>Enviar imagem</label>
+            <input type="file" placeholder="Enviar imagem" (change)="fileChangeEvent($event)" />
         </p>
+
         <input type="submit" value="Cadastrar" class="btn btn-primary">
     </form>
 </div>

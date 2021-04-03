@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './service/user.service';
 import { PersistData }  from './service/persistdata';
 import { User } from './models/user';
+import { GLOBAL } from './service/global';
 
 @Component({
   selector: 'app-root',
@@ -16,26 +18,28 @@ export class AppComponent implements OnInit {
   public token;
   public errorMessage;
   public alertMessage;
+  public url;
+  public divImageUser;
 
   constructor(
     private _userService:UserService,
-    private _persistData:PersistData
+    private _persistData:PersistData,
+    private _router: Router
   ){
     this.user = new User('','','','','','ROLE_USER','');
     this.userRegister = new User('','','','','','ROLE_USER','');
     this.token = '';
     this.errorMessage = '';
+    this.url = GLOBAL.url;
   }
 
   ngOnInit() {
     this.identity = this._persistData.getIdentity();
     this.token = this._persistData.getToken();
-
-    console.log(this.identity);
+    this.divImageUser = this.identity ? this.url + 'get-user-image/' + this.identity.image : '';
   }
 
   public onSubmit(){
-    console.log(this.user)
     this._userService.signup(this.user).subscribe(
       (response: any) => {
         let identity = response.user;
@@ -45,6 +49,8 @@ export class AppComponent implements OnInit {
         } else {
           //Criar localstorage
           localStorage.setItem('identity', JSON.stringify(identity));
+
+          this.divImageUser = this.identity ? this.url + 'get-user-image/' + this.identity.image : '';
 
           //Tokenizar
           this._userService.signup(this.user, 'true').subscribe(
@@ -84,6 +90,7 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.identity = null;
     this.token = null;
+    this._router.navigate([''])
   }
 
   onSubmitRegister(){

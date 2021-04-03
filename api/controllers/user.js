@@ -93,6 +93,10 @@ function updateUser(req, res) {
     var userId = req.params.id;
     var update = req.body;
 
+    if(userId != req.user.sub){
+        return res.status(401).send({message: "Usuário não tem permissao para alterar"});
+    }   
+
     User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
         if(err) {
             res.status(500).send({message: "Erro ao atualizar usuário"});
@@ -109,6 +113,8 @@ function updateUser(req, res) {
 function uploadImage(req, res) {
     var userId = req.params.id;
     var file_name = "sem imagem";
+
+    console.log(req.files);
 
     if(req.files) {
         var file_path = req.files.image.path;
