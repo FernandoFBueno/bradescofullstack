@@ -9,13 +9,13 @@
 }
 
 #identityName {
-    float: left;
+    margin: 0 auto;
 }
 #identityName .imageUser {
     width: 40px;
     border-radius: 30px;
     height: 40px;
-    float: left;
+    margin: 0 auto;
 }
 
 #identityName .imageUser div{

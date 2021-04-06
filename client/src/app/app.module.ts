@@ -9,6 +9,8 @@ import { UserService } from './service/user.service';
 import { PersistData }  from './service/persistdata';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { TokenInterceptorService } from './service/tokeninterceptor.service';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { TokenInterceptorService } from './service/tokeninterceptor.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     UserService,
