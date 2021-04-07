@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
-import { UserService } from "../service/user.service";
-import { PersistData }  from '../service/persistdata';
-import { GLOBAL } from '../service/global';
+import { User } from '../../models/user';
+import { UserService } from "../../service/user.service";
+import { PersistData }  from '../../service/persistdata';
+import { GLOBAL } from '../../service/global';
 
 @Component({
   selector: 'app-user-edit',

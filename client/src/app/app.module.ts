@@ -7,15 +7,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { PersistData }  from './service/persistdata';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { TokenInterceptorService } from './service/tokeninterceptor.service';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ArtistListComponent } from './components/artist-list/artist-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserEditComponent
+    UserEditComponent,
+    ArtistListComponent
   ],
   imports: [
     AppRoutingModule,
